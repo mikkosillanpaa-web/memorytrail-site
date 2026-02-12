@@ -17,11 +17,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Memory Trail – Memory Path Game for Android</title>
+  <title>Memory Trail – Path Memory Game for Android</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Memory Trail is a simple but addictive memory path game for Android. Watch the trail, remember it, and draw it back."
+    content="Train your memory and focus with Memory Trail – a relaxing but challenging path memory game for Android."
   />
 
   <style>
@@ -322,7 +322,7 @@
     }
 
     .screenshot-placeholder::after {
-      content: "Game screenshot placeholder";
+      content: "Gameplay screenshot placeholder";
       position: absolute;
       left: 50%;
       top: 50%;
@@ -474,7 +474,7 @@
     /* FAQ / support */
     .faq-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
       gap: 1.2rem;
       margin-bottom: 2rem;
     }
@@ -491,6 +491,13 @@
     }
 
     .faq-item p {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+    }
+
+    .faq-item ul {
+      margin-top: 0.25rem;
+      padding-left: 1.1rem;
       font-size: 0.88rem;
       color: var(--text-soft);
     }
@@ -660,7 +667,7 @@
       </div>
       <div class="nav-links">
         <a href="#about">About</a>
-        <a href="#features">Gameplay</a>
+        <a href="#howto">How to play</a>
         <a href="#privacy">Privacy</a>
         <a href="#support">Support</a>
         <a
@@ -679,19 +686,21 @@
     <!-- Hero -->
     <section class="hero">
       <div class="hero-left">
-        <div class="hero-subtitle">Android memory game</div>
-        <h1>Memory Trail – remember the path, beat the level</h1>
+        <div class="hero-subtitle">Android path memory game</div>
+        <h1>Memory Trail – train your memory and focus</h1>
         <p class="hero-description">
-          Memory Trail is a simple but addictive memory game. Watch the trail that
-          is drawn on the grid, try to remember it, and then draw the same path
-          back – with each level getting a little bit trickier. Perfect for quick
-          sessions or longer memory training.
+          Train your memory and focus with Memory Trail – a relaxing but challenging
+          path memory game. Watch as the game lights up a path on a grid.
+          Your task is simple: remember the route and draw exactly the same path
+          with your finger. Each round adds one more step. How far can you go
+          before your mind slips?
         </p>
 
         <div class="hero-badges">
-          <div class="badge"><strong>Age rating:</strong> PEGI 3</div>
-          <div class="badge"><strong>Platform:</strong> Android phones & tablets</div>
-          <div class="badge"><strong>Language:</strong> English</div>
+          <div class="badge"><strong>Version:</strong> 1.5.1</div>
+          <div class="badge"><strong>Updated:</strong> Feb 7, 2026</div>
+          <div class="badge"><strong>Requires Android:</strong> 7.0 and up</div>
+          <div class="badge"><strong>Content rating:</strong> PEGI 3</div>
         </div>
 
         <div class="hero-cta">
@@ -724,44 +733,45 @@
       </div>
     </section>
 
-    <!-- About & Features -->
+    <!-- About / Features -->
     <section id="about" class="section">
-      <h2>What is Memory Trail?</h2>
+      <h2>About Memory Trail</h2>
       <p class="section-intro">
-        Memory Trail is a light-weight memory game where your goal is to memorize
-        a path drawn on a grid and then trace it back as accurately as you can.
-        Levels gradually become longer and more complex, challenging your visual
-        memory and focus.
+        Memory Trail is built to be easy to understand but hard to master.
+        It’s a calm, skill‑based game where the only limit is how long you
+        can keep the glowing trail in your mind.
       </p>
 
-      <div class="feature-grid" id="features">
+      <div class="feature-grid">
         <article class="feature-card">
-          <div class="feature-tag">Gameplay</div>
-          <h3>Simple idea, growing challenge</h3>
+          <div class="feature-tag">Core idea</div>
+          <h3>Follow the glowing path</h3>
           <ul>
-            <li>First, watch how the trail moves through the grid.</li>
-            <li>When the trail disappears, draw the same path from memory.</li>
-            <li>Each level increases length or complexity of the trail.</li>
+            <li>Tiles on the grid light up one by one to show you the path.</li>
+            <li>Your goal is to remember the exact route.</li>
+            <li>Draw the same path with your finger, step by step.</li>
+            <li>Each round adds one more step to the trail.</li>
           </ul>
         </article>
 
         <article class="feature-card">
-          <div class="feature-tag">Play style</div>
-          <h3>Quick and focused sessions</h3>
+          <div class="feature-tag">Game feel</div>
+          <h3>Designed for focus and relaxation</h3>
           <ul>
-            <li>Short levels – great for breaks or commuting.</li>
-            <li>Clear and minimal interface, no unnecessary menus.</li>
-            <li>Learn the rules in seconds, master them over time.</li>
+            <li>Clean, atmospheric forest‑themed visuals.</li>
+            <li>Smooth tile animations for a calm experience.</li>
+            <li>No timers rushing you – the only challenge is your own memory.</li>
+            <li>Perfect for short breaks, daily brain training or winding down.</li>
           </ul>
         </article>
 
         <article class="feature-card">
-          <div class="feature-tag">Who is it for?</div>
-          <h3>Suitable for all ages</h3>
+          <div class="feature-tag">Progress</div>
+          <h3>Chasing your own best scores</h3>
           <ul>
-            <li>PEGI 3 – no violence or inappropriate content.</li>
-            <li>Fun for kids, adults and seniors alike.</li>
-            <li>Good exercise for visual memory and concentration.</li>
+            <li>Each correct path advances you to the next round.</li>
+            <li>One mistake ends the game – your score is the round you reached.</li>
+            <li>See how far you can go and beat your previous records.</li>
           </ul>
         </article>
       </div>
@@ -772,67 +782,143 @@
           <dl class="details-list">
             <div>
               <dt>Platform</dt>
-              <dd>Android (phones and tablets)</dd>
+              <dd>Android phones and tablets</dd>
+            </div>
+            <div>
+              <dt>Requires Android</dt>
+              <dd>7.0 and up</dd>
             </div>
             <div>
               <dt>Distribution</dt>
               <dd>Google Play Store</dd>
             </div>
             <div>
-              <dt>Age rating</dt>
-              <dd>PEGI 3</dd>
+              <dt>Downloads</dt>
+              <dd>10+ downloads (and growing)</dd>
             </div>
             <div>
-              <dt>Offline play</dt>
-              <dd>Works without a constant internet connection</dd>
+              <dt>In‑app purchases</dt>
+              <dd>€2.99 if billed through Play (e.g. Remove Ads)</dd>
+            </div>
+            <div>
+              <dt>Content rating</dt>
+              <dd>PEGI 3</dd>
             </div>
           </dl>
           <div class="meta-pill-row">
             <span class="meta-pill ok">No account required</span>
-            <span class="meta-pill ok">No social media login</span>
+            <span class="meta-pill ok">No personal data needed to play</span>
           </div>
         </article>
 
         <article class="details-card">
           <h3>About the developer</h3>
           <p>
-            Memory Trail is created by a solo developer as a hobby project.
-            The goal is to offer a clean, focused memory game without clutter
-            and without unnecessary distractions.
+            Memory Trail is created by a solo developer as a passion project.
+            The focus is on a clean, distraction‑free memory game that you can
+            pick up for a few minutes or play for longer training sessions.
           </p>
           <div class="meta-pill-row" style="margin-top: 0.6rem;">
             <span class="meta-pill">Solo developer project</span>
-            <span class="meta-pill">Lightweight and simple</span>
+            <span class="meta-pill">Lightweight and focused</span>
           </div>
           <!-- Optional: YouTube trailer link -->
           <!--
           <p style="margin-top:0.7rem;">
             Watch a short gameplay trailer on
-            <a href="YOUR_YOUTUBE_URL_HERE" target="_blank" rel="noopener">YouTube</a>.
+            <a href="YOUR_YOUTUBE_VIDEO_URL" target="_blank" rel="noopener">YouTube</a>.
           </p>
           -->
         </article>
       </div>
     </section>
 
-    <!-- Privacy / Data -->
-    <section id="privacy" class="section">
-      <h2>Privacy & data use</h2>
+    <!-- How to play -->
+    <section id="howto" class="section">
+      <h2>How to play</h2>
       <p class="section-intro">
-        This section explains which data Memory Trail may collect and what it is
-        used for. Always refer to the Google Play Store listing for the official
-        and most up‑to‑date privacy information.
+        Memory Trail is easy to learn in a few seconds. Here’s how the game works and
+        what makes it progressively more challenging.
+      </p>
+
+      <div class="faq-grid">
+        <div>
+          <article class="faq-item">
+            <h3>Step‑by‑step instructions</h3>
+            <ul>
+              <li>Press <strong>Play</strong> to start a new game.</li>
+              <li>Watch carefully as tiles light up one by one – this is the path you must memorize.</li>
+              <li>When it’s your turn, touch the starting tile and slide your finger to neighbouring tiles (up, down, left or right) to trace the same route.</li>
+              <li>If you follow the path correctly to the end, you advance to the next round and the path gets longer.</li>
+              <li>One mistake ends the game and your score is the round you reached.</li>
+            </ul>
+          </article>
+
+          <article class="faq-item">
+            <h3>Three difficulty levels</h3>
+            <p>
+              Choose how big a challenge you want. You can switch the grid size
+              at any time and try to set a new record on each level:
+            </p>
+            <ul>
+              <li><strong>2×2</strong> – four large tiles, short paths, great for a quick warm‑up.</li>
+              <li><strong>3×3</strong> – classic grid with balanced difficulty.</li>
+              <li><strong>4×4</strong> – more tiles, longer routes, serious memory training.</li>
+            </ul>
+          </article>
+
+          <article class="faq-item">
+            <h3>Highscores</h3>
+            <p>
+              For every grid size, the game keeps your top three scores:
+            </p>
+            <ul>
+              <li>best round reached</li>
+              <li>date and time when you achieved it</li>
+            </ul>
+            <p style="margin-top:0.3rem;">
+              All scores are stored locally on your device. Check the High Score
+              screen to see how your memory has improved over time.
+            </p>
+          </article>
+        </div>
+
+        <aside class="support-card">
+          <h3>Sound & haptics</h3>
+          <p>
+            Memory Trail uses subtle audio and vibration feedback to make the path
+            feel more alive:
+          </p>
+          <ul style="margin-top:0.4rem; padding-left:1.1rem;">
+            <li>Optional sound effects for each tile and action.</li>
+            <li>Short vibrations on each correct step.</li>
+            <li>A small reward buzz on success and a longer buzz on game over.</li>
+          </ul>
+          <p style="margin-top:0.4rem;">
+            You can toggle sounds and haptics on or off with a single button
+            in the game.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Privacy -->
+    <section id="privacy" class="section">
+      <h2>Privacy</h2>
+      <p class="section-intro">
+        Memory Trail is designed to respect your privacy. You can enjoy the game
+        without creating an account or sharing personal information.
       </p>
 
       <article class="privacy-card">
-        <h3>Summary</h3>
+        <h3>What the game does (and doesn’t) collect</h3>
         <div class="privacy-badge-row">
-          <span class="meta-pill ok">No user account required</span>
-          <span class="meta-pill ok">No sale of personal data</span>
-          <span class="meta-pill">May use anonymous usage data</span>
+          <span class="meta-pill ok">No account required</span>
+          <span class="meta-pill ok">No personal data needed to play</span>
+          <span class="meta-pill ok">High scores & settings stored locally</span>
         </div>
 
-        <table class="privacy-table" aria-label="Collected data">
+        <table class="privacy-table" aria-label="Data usage">
           <thead>
           <tr>
             <th>Category</th>
@@ -842,41 +928,46 @@
           </thead>
           <tbody>
           <tr>
-            <td>App usage & diagnostics</td>
-            <td>
-              Basic technical or analytics data such as app version or crashes
-              (if enabled through the Play Store and your device settings).
-            </td>
-            <td>Improving stability, fixing bugs, and making the game better.</td>
+            <td>Local game data</td>
+            <td>High scores, grid size, sound & haptic settings.</td>
+            <td>Stored on your device to keep your progress and preferences.</td>
           </tr>
           <tr>
-            <td>Personal information</td>
-            <td>No in‑app registration or user account.</td>
-            <td>Not used for identification inside the app.</td>
+            <td>App usage & diagnostics</td>
+            <td>
+              If enabled by Google Play / your device: anonymous crash reports
+              or basic usage data.
+            </td>
+            <td>Improving stability, fixing bugs, and refining the game.</td>
           </tr>
           </tbody>
         </table>
 
         <p class="privacy-note">
-          For full details about data collection, third‑party services,
-          and retention, please check the
+          Ads may be shown in the free version. A <strong>Remove Ads</strong>
+          option is available as an in‑app purchase (€2.99 if billed through Play).
+        </p>
+
+        <p class="privacy-note" style="margin-top:0.5rem;">
+          For full details about data collection, permissions, and third‑party
+          services, please see the official listing on
           <a
             href="https://play.google.com/store/apps/details?id=com.msillanpaa.memorylines"
             target="_blank"
             rel="noopener"
           >
-            Memory Trail page on Google Play
+            Google Play
           </a>.
         </p>
       </article>
     </section>
 
-    <!-- FAQ / Support -->
+    <!-- Support -->
     <section id="support" class="section">
-      <h2>FAQ & support</h2>
+      <h2>Support & contact</h2>
       <p class="section-intro">
-        Here are answers to common questions and how to contact the developer
-        if you need help or want to send feedback.
+        If you run into issues, have questions or want to suggest new features,
+        feel free to contact the developer.
       </p>
 
       <div class="faq-grid">
@@ -885,8 +976,8 @@
             <h3>Is the game free?</h3>
             <p>
               Yes, Memory Trail can be downloaded for free from the Google Play
-              Store. Any ads or in‑app purchases (if present) are clearly
-              described on the Play Store page.
+              Store. There may be ads in the free version. A one‑time in‑app
+              purchase can be used to remove ads.
             </p>
           </article>
 
@@ -894,17 +985,17 @@
             <h3>Do I need an internet connection?</h3>
             <p>
               You can play Memory Trail without a constant internet connection.
-              You will, however, need a connection to download the game and
-              to receive updates from the Play Store.
+              You will need internet to download the game and receive updates
+              from the Play Store, and possibly to load ads.
             </p>
           </article>
 
           <article class="faq-item">
             <h3>Which devices are supported?</h3>
             <p>
-              Memory Trail is designed for Android phones and tablets.
-              Minimum Android version and other requirements are listed on
-              the game’s Google Play page.
+              Memory Trail is designed for Android phones and tablets running
+              Android 7.0 or newer. On the Play Store, you can see compatibility
+              information for your own devices when you are logged in.
             </p>
           </article>
         </div>
@@ -913,29 +1004,28 @@
           <h3>Contact & feedback</h3>
           <ul class="support-list">
             <li>
-              <div class="support-label">Email</div>
+              <div class="support-label">Support email</div>
               <div class="support-value">
-                <!-- Replace with your real support email -->
-                <a href="mailto:SUPPORT@EXAMPLE.COM">SUPPORT@EXAMPLE.COM</a>
+                <a href="mailto:donturex.dev@gmail.com">donturex.dev@gmail.com</a>
               </div>
             </li>
             <li>
               <div class="support-label">Google Play page</div>
               <div class="support-value">
                 <a
-                  href="https://play.google.com/store/apps?id=com.msillanpaa.memorylines"
+                  href="https://play.google.com/store/apps/details?id=com.msillanpaa.memorylines"
                   target="_blank"
                   rel="noopener"
                 >
-                  Open in Google Play
+                  Open Memory Trail in Google Play
                 </a>
               </div>
             </li>
             <li>
               <div class="support-label">Feedback</div>
               <div class="support-value">
-                You can leave a rating and review in the Google Play Store.
-                Your feedback helps decide what to improve in future updates.
+                You can leave a rating and review on the Play Store. Your
+                feedback helps improve Memory Trail in future updates.
               </div>
             </li>
           </ul>
@@ -951,6 +1041,7 @@
       </div>
       <div class="footer-links">
         <a href="#about">About</a>
+        <a href="#howto">How to play</a>
         <a href="#privacy">Privacy</a>
         <a href="#support">Support</a>
       </div>
@@ -959,7 +1050,6 @@
 </div>
 
 <script>
-  // Set current year automatically
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 </body>
