@@ -1,1 +1,973 @@
-Memory Trail
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<style>
+								body {
+									background-color: white; /* Ensure the iframe has a white background */
+								}
+
+								
+							</style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Memory Trail – Memory Path Game for Android</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Memory Trail is a simple but addictive memory path game for Android. Watch the trail, remember it, and draw it back."
+  />
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-soft: #0b1020;
+      --accent: #4fc3f7;
+      --accent-soft: rgba(79,195,247,0.15);
+      --text: #f5f5f5;
+      --text-soft: #c7c7c7;
+      --danger: #ff5252;
+      --ok: #69f0ae;
+      --max-width: 980px;
+      --radius: 10px;
+      --shadow-soft: 0 12px 30px rgba(0,0,0,0.45);
+      --shadow-pill: 0 8px 18px rgba(0,0,0,0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1b2640 0, #050816 50%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      border-bottom: 1px solid rgba(255,255,255,0.09);
+      backdrop-filter: blur(16px);
+      background: linear-gradient(
+        to right,
+        rgba(5,8,22,0.96),
+        rgba(5,8,22,0.9)
+      );
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.8rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 1rem;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: radial-gradient(circle at 30% 20%, #ffffff 0, #4fc3f7 40%, #1565c0 100%);
+      box-shadow: 0 0 18px rgba(79,195,247,0.65);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #02030a;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #4fc3f7, #00e5ff);
+      transition: width 0.18s ease-out;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links .cta {
+      background: linear-gradient(135deg, #4fc3f7, #00e5ff);
+      color: #020410;
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      box-shadow: var(--shadow-pill);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .nav-links .cta::after {
+      display: none;
+    }
+
+    .nav-links .cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(0,229,255,0.36);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    /* Hero */
+    .hero {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2.5rem 1rem 2rem;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-left h1 {
+      font-size: clamp(2rem, 3.2vw, 2.6rem);
+      line-height: 1.15;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-subtitle {
+      color: var(--accent);
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-description {
+      color: var(--text-soft);
+      max-width: 540px;
+      font-size: 0.97rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin: 1.3rem 0 1.5rem;
+    }
+
+    .badge {
+      font-size: 0.78rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text-soft);
+      background: radial-gradient(circle at top left, rgba(79,195,247,0.18), rgba(5,8,22,0.9));
+    }
+
+    .badge strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4fc3f7, #00e5ff);
+      color: #020410;
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      border: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      box-shadow: var(--shadow-pill);
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 32px rgba(0,229,255,0.38);
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 0.55rem 1.1rem;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      background: rgba(3,7,18,0.75);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      transition: border-color 0.15s ease-out, background 0.15s ease-out;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      background: rgba(3,7,18,0.92);
+    }
+
+    .hero-right {
+      position: relative;
+    }
+
+    .phone-frame {
+      margin-left: auto;
+      width: min(320px, 100%);
+      aspect-ratio: 9/19;
+      border-radius: 34px;
+      padding: 10px;
+      background: radial-gradient(circle at top left, #4fc3f7, #111827);
+      box-shadow: 0 28px 60px rgba(0,0,0,0.75);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phone-inner {
+      border-radius: 26px;
+      background: #000;
+      overflow: hidden;
+      height: 100%;
+      border: 2px solid #000;
+      position: relative;
+    }
+
+    .phone-status-dot {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .screenshot {
+      position: absolute;
+      inset: 18px 6px 6px;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .screenshot-placeholder {
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at top, rgba(79,195,247,0.5), transparent 55%),
+        radial-gradient(circle at 70% 80%, rgba(0,229,255,0.45), transparent 60%),
+        linear-gradient(145deg, #020617, #020617 30%, #020617 60%, #020617);
+      position: relative;
+    }
+
+    .screenshot-placeholder::after {
+      content: "Game screenshot placeholder";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 0.72rem;
+      text-align: center;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .phone-tag {
+      position: absolute;
+      bottom: -14px;
+      right: 8px;
+      font-size: 0.68rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.4);
+      color: #e5e7eb;
+      backdrop-filter: blur(12px);
+    }
+
+    /* Sections */
+    .section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.5rem 1rem 0;
+    }
+
+    .section h2 {
+      font-size: 1.35rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-intro {
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    /* Feature cards */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-card {
+      background: radial-gradient(circle at top left, rgba(79,195,247,0.22), rgba(15,23,42,0.96));
+      border-radius: var(--radius);
+      padding: 0.9rem 0.95rem;
+      border: 1px solid rgba(148,163,184,0.3);
+      box-shadow: var(--shadow-soft);
+      font-size: 0.9rem;
+    }
+
+    .feature-card h3 {
+      font-size: 0.98rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .feature-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #9ca3af;
+      margin-bottom: 0.3rem;
+    }
+
+    .feature-card ul {
+      padding-left: 1.1rem;
+      margin: 0.2rem 0 0;
+      color: var(--text-soft);
+    }
+
+    .feature-card li {
+      margin-bottom: 0.12rem;
+    }
+
+    /* Details / info */
+    .details-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .details-card {
+      background: rgba(15,23,42,0.93);
+      border-radius: var(--radius);
+      border: 1px solid rgba(148,163,184,0.35);
+      padding: 0.9rem 1rem;
+      font-size: 0.9rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .details-card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .details-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.45rem 1.5rem;
+      font-size: 0.86rem;
+      color: var(--text-soft);
+      margin-top: 0.2rem;
+    }
+
+    .details-list dt {
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+
+    .details-list dd {
+      margin: 0;
+    }
+
+    .meta-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+
+    .meta-pill {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      color: #d1d5db;
+      background: rgba(15,23,42,0.9);
+    }
+
+    .meta-pill.ok {
+      border-color: rgba(105,240,174,0.9);
+      color: var(--ok);
+    }
+
+    .meta-pill.warn {
+      border-color: rgba(255,82,82,0.85);
+      color: var(--danger);
+    }
+
+    /* FAQ / support */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .faq-item + .faq-item {
+      margin-top: 0.7rem;
+      padding-top: 0.65rem;
+      border-top: 1px dashed rgba(148,163,184,0.4);
+    }
+
+    .faq-item h3 {
+      font-size: 0.96rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .faq-item p {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+    }
+
+    .support-card {
+      background: radial-gradient(circle at top, rgba(79,195,247,0.2), rgba(15,23,42,0.96));
+      border: 1px solid rgba(148,163,184,0.55);
+      border-radius: var(--radius);
+      padding: 0.9rem 1rem;
+      box-shadow: var(--shadow-soft);
+      font-size: 0.88rem;
+    }
+
+    .support-card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .support-list {
+      list-style: none;
+      margin-top: 0.2rem;
+    }
+
+    .support-list li + li {
+      margin-top: 0.4rem;
+    }
+
+    .support-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #9ca3af;
+    }
+
+    .support-value a {
+      color: var(--accent);
+    }
+
+    /* Privacy */
+    .privacy-card {
+      background: rgba(15,23,42,0.96);
+      border-radius: var(--radius);
+      border: 1px solid rgba(148,163,184,0.45);
+      padding: 0.9rem 1rem;
+      font-size: 0.88rem;
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 2.2rem;
+    }
+
+    .privacy-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.7rem;
+      font-size: 0.85rem;
+    }
+
+    .privacy-table th,
+    .privacy-table td {
+      padding: 0.4rem 0.35rem;
+      text-align: left;
+    }
+
+    .privacy-table th {
+      font-weight: 500;
+      color: #e5e7eb;
+      border-bottom: 1px solid rgba(148,163,184,0.6);
+    }
+
+    .privacy-table tr:nth-child(even) td {
+      background: rgba(15,23,42,0.9);
+    }
+
+    .privacy-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .privacy-note {
+      margin-top: 0.6rem;
+      color: var(--text-soft);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(148,163,184,0.25);
+      margin-top: 1.8rem;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.8rem 1rem 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.8rem;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-decoration-color: rgba(148,163,184,0.7);
+    }
+
+    /* Responsive */
+    @media (max-width: 820px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding-top: 1.7rem;
+      }
+      .hero-right {
+        order: -1;
+      }
+      .phone-frame {
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 720px) {
+      header {
+        position: static;
+      }
+      .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .nav-links {
+        justify-content: center;
+      }
+      .details-grid,
+      .faq-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .btn-primary,
+      .btn-ghost {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+  <header>
+    <nav class="nav">
+      <div class="logo">
+        <div class="logo-icon">MT</div>
+        <span>Memory Trail</span>
+      </div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#features">Gameplay</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#support">Support</a>
+        <a
+          href="https://play.google.com/store/apps/details?id=com.msillanpaa.memorylines"
+          target="_blank"
+          rel="noopener"
+          class="cta"
+        >
+          Get it on Google Play
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-subtitle">Android memory game</div>
+        <h1>Memory Trail – remember the path, beat the level</h1>
+        <p class="hero-description">
+          Memory Trail is a simple but addictive memory game. Watch the trail that
+          is drawn on the grid, try to remember it, and then draw the same path
+          back – with each level getting a little bit trickier. Perfect for quick
+          sessions or longer memory training.
+        </p>
+
+        <div class="hero-badges">
+          <div class="badge"><strong>Age rating:</strong> PEGI 3</div>
+          <div class="badge"><strong>Platform:</strong> Android phones & tablets</div>
+          <div class="badge"><strong>Language:</strong> English</div>
+        </div>
+
+        <div class="hero-cta">
+          <a
+            class="btn-primary"
+            href="https://play.google.com/store/apps/details?id=com.msillanpaa.memorylines"
+            target="_blank"
+            rel="noopener"
+          >
+            Download on Google Play
+          </a>
+          <a class="btn-ghost" href="#about">
+            Learn more
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="phone-frame">
+          <div class="phone-inner">
+            <div class="phone-status-dot"></div>
+            <div class="screenshot">
+              <!-- Replace placeholder with your real screenshot if you like -->
+              <!-- <img src="screenshot1.png" alt="Memory Trail gameplay screenshot"> -->
+              <div class="screenshot-placeholder"></div>
+            </div>
+          </div>
+          <div class="phone-tag">Android game • Memory training</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About & Features -->
+    <section id="about" class="section">
+      <h2>What is Memory Trail?</h2>
+      <p class="section-intro">
+        Memory Trail is a light-weight memory game where your goal is to memorize
+        a path drawn on a grid and then trace it back as accurately as you can.
+        Levels gradually become longer and more complex, challenging your visual
+        memory and focus.
+      </p>
+
+      <div class="feature-grid" id="features">
+        <article class="feature-card">
+          <div class="feature-tag">Gameplay</div>
+          <h3>Simple idea, growing challenge</h3>
+          <ul>
+            <li>First, watch how the trail moves through the grid.</li>
+            <li>When the trail disappears, draw the same path from memory.</li>
+            <li>Each level increases length or complexity of the trail.</li>
+          </ul>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-tag">Play style</div>
+          <h3>Quick and focused sessions</h3>
+          <ul>
+            <li>Short levels – great for breaks or commuting.</li>
+            <li>Clear and minimal interface, no unnecessary menus.</li>
+            <li>Learn the rules in seconds, master them over time.</li>
+          </ul>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-tag">Who is it for?</div>
+          <h3>Suitable for all ages</h3>
+          <ul>
+            <li>PEGI 3 – no violence or inappropriate content.</li>
+            <li>Fun for kids, adults and seniors alike.</li>
+            <li>Good exercise for visual memory and concentration.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="details-grid">
+        <article class="details-card">
+          <h3>Technical details</h3>
+          <dl class="details-list">
+            <div>
+              <dt>Platform</dt>
+              <dd>Android (phones and tablets)</dd>
+            </div>
+            <div>
+              <dt>Distribution</dt>
+              <dd>Google Play Store</dd>
+            </div>
+            <div>
+              <dt>Age rating</dt>
+              <dd>PEGI 3</dd>
+            </div>
+            <div>
+              <dt>Offline play</dt>
+              <dd>Works without a constant internet connection</dd>
+            </div>
+          </dl>
+          <div class="meta-pill-row">
+            <span class="meta-pill ok">No account required</span>
+            <span class="meta-pill ok">No social media login</span>
+          </div>
+        </article>
+
+        <article class="details-card">
+          <h3>About the developer</h3>
+          <p>
+            Memory Trail is created by a solo developer as a hobby project.
+            The goal is to offer a clean, focused memory game without clutter
+            and without unnecessary distractions.
+          </p>
+          <div class="meta-pill-row" style="margin-top: 0.6rem;">
+            <span class="meta-pill">Solo developer project</span>
+            <span class="meta-pill">Lightweight and simple</span>
+          </div>
+          <!-- Optional: YouTube trailer link -->
+          <!--
+          <p style="margin-top:0.7rem;">
+            Watch a short gameplay trailer on
+            <a href="YOUR_YOUTUBE_URL_HERE" target="_blank" rel="noopener">YouTube</a>.
+          </p>
+          -->
+        </article>
+      </div>
+    </section>
+
+    <!-- Privacy / Data -->
+    <section id="privacy" class="section">
+      <h2>Privacy & data use</h2>
+      <p class="section-intro">
+        This section explains which data Memory Trail may collect and what it is
+        used for. Always refer to the Google Play Store listing for the official
+        and most up‑to‑date privacy information.
+      </p>
+
+      <article class="privacy-card">
+        <h3>Summary</h3>
+        <div class="privacy-badge-row">
+          <span class="meta-pill ok">No user account required</span>
+          <span class="meta-pill ok">No sale of personal data</span>
+          <span class="meta-pill">May use anonymous usage data</span>
+        </div>
+
+        <table class="privacy-table" aria-label="Collected data">
+          <thead>
+          <tr>
+            <th>Category</th>
+            <th>Examples</th>
+            <th>Purpose</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>App usage & diagnostics</td>
+            <td>
+              Basic technical or analytics data such as app version or crashes
+              (if enabled through the Play Store and your device settings).
+            </td>
+            <td>Improving stability, fixing bugs, and making the game better.</td>
+          </tr>
+          <tr>
+            <td>Personal information</td>
+            <td>No in‑app registration or user account.</td>
+            <td>Not used for identification inside the app.</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <p class="privacy-note">
+          For full details about data collection, third‑party services,
+          and retention, please check the
+          <a
+            href="https://play.google.com/store/apps/details?id=com.msillanpaa.memorylines"
+            target="_blank"
+            rel="noopener"
+          >
+            Memory Trail page on Google Play
+          </a>.
+        </p>
+      </article>
+    </section>
+
+    <!-- FAQ / Support -->
+    <section id="support" class="section">
+      <h2>FAQ & support</h2>
+      <p class="section-intro">
+        Here are answers to common questions and how to contact the developer
+        if you need help or want to send feedback.
+      </p>
+
+      <div class="faq-grid">
+        <div>
+          <article class="faq-item">
+            <h3>Is the game free?</h3>
+            <p>
+              Yes, Memory Trail can be downloaded for free from the Google Play
+              Store. Any ads or in‑app purchases (if present) are clearly
+              described on the Play Store page.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Do I need an internet connection?</h3>
+            <p>
+              You can play Memory Trail without a constant internet connection.
+              You will, however, need a connection to download the game and
+              to receive updates from the Play Store.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Which devices are supported?</h3>
+            <p>
+              Memory Trail is designed for Android phones and tablets.
+              Minimum Android version and other requirements are listed on
+              the game’s Google Play page.
+            </p>
+          </article>
+        </div>
+
+        <aside class="support-card">
+          <h3>Contact & feedback</h3>
+          <ul class="support-list">
+            <li>
+              <div class="support-label">Email</div>
+              <div class="support-value">
+                <!-- Replace with your real support email -->
+                <a href="mailto:SUPPORT@EXAMPLE.COM">SUPPORT@EXAMPLE.COM</a>
+              </div>
+            </li>
+            <li>
+              <div class="support-label">Google Play page</div>
+              <div class="support-value">
+                <a
+                  href="https://play.google.com/store/apps?id=com.msillanpaa.memorylines"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Open in Google Play
+                </a>
+              </div>
+            </li>
+            <li>
+              <div class="support-label">Feedback</div>
+              <div class="support-value">
+                You can leave a rating and review in the Google Play Store.
+                Your feedback helps decide what to improve in future updates.
+              </div>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        © <span id="year"></span> Memory Trail. All rights reserved.
+      </div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#support">Support</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // Set current year automatically
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
+
+							<script>
+                            	
+							</script>
+                        </body>
+                        </html>
+                    
