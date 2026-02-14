@@ -1,1 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SCORE: 125 – Universal Scoreboard App for Android</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="SCORE: 125 is a clean, flexible and universal scoreboard app for any game. Track points easily – fully offline."
+  />
 
+  <style>
+    :root {
+      --bg: #0a0f1f;
+      --bg-soft: #121a33;
+      --accent: #69f0ae;
+      --accent-2: #00e676;
+      --text: #f5f5f5;
+      --text-soft: #c7c7c7;
+      --radius: 10px;
+      --max-width: 980px;
+      --shadow-soft: 0 12px 30px rgba(0,0,0,0.45);
+      --shadow-pill: 0 8px 18px rgba(0,0,0,0.35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(rgba(5,10,25,0.92), rgba(5,10,25,0.98)),
+        radial-gradient(circle at top right, rgba(105,240,174,0.2), transparent 60%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .page { min-height: 100vh; display: flex; flex-direction: column; }
+
+    header {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(10,15,31,0.95);
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.8rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .logo-img {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 14px rgba(105,240,174,0.6);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      flex-wrap: wrap;
+    }
+
+    .nav-links .cta {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #02110a;
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      font-weight: 600;
+      box-shadow: var(--shadow-pill);
+    }
+
+    main { flex: 1; }
+
+    .hero {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2.5rem 1rem 2rem;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 3vw, 2.5rem);
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-subtitle {
+      color: var(--accent);
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-description {
+      color: var(--text-soft);
+      max-width: 540px;
+      font-size: 0.95rem;
+    }
+
+    .hero-cta { margin-top: 1.4rem; }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #02110a;
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      font-weight: 600;
+      box-shadow: var(--shadow-pill);
+      display: inline-block;
+    }
+
+    .phone-frame {
+      margin-left: auto;
+      width: min(320px, 100%);
+      aspect-ratio: 9/19;
+      border-radius: 34px;
+      padding: 10px;
+      background: radial-gradient(circle at top left, var(--accent), #111827);
+      box-shadow: 0 28px 60px rgba(0,0,0,0.75);
+    }
+
+    .phone-inner {
+      border-radius: 26px;
+      background: #000;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.5rem 1rem 0;
+    }
+
+    .section h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-intro {
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .feature-card {
+      background: rgba(18,26,51,0.95);
+      border-radius: var(--radius);
+      padding: 0.9rem 1rem;
+      border: 1px solid rgba(105,240,174,0.3);
+      box-shadow: var(--shadow-soft);
+      font-size: 0.9rem;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 2rem;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.8rem 1rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    @media (max-width: 820px) {
+      .hero { grid-template-columns: 1fr; }
+      .phone-frame { margin: 0 auto; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+  <header>
+    <nav class="nav">
+      <div class="logo">
+        <div class="logo-img">
+          <img src="images/logo.png" alt="SCORE 125 logo" />
+        </div>
+        <span>SCORE: 125</span>
+      </div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#support">Support</a>
+        <a href="#" class="cta">Get it on Google Play</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div>
+        <div class="hero-subtitle">Universal scoreboard app</div>
+        <h1>SCORE: 125 – Track points for any game</h1>
+        <p class="hero-description">
+          Make every game night smoother with SCORE: 125 – a clean and flexible
+          scoreboard app for any game. No built-in rules, no restrictions.
+          Just enter player names and start counting.
+        </p>
+        <div class="hero-cta">
+          <a class="btn-primary" href="#">Download on Google Play</a>
+        </div>
+      </div>
+
+      <div class="phone-frame">
+        <div class="phone-inner">
+          <img src="images/screenshot.jpg" alt="SCORE 125 app screenshot" />
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <h2>Main Features</h2>
+      <p class="section-intro">
+        Designed to be fast, distraction-free and easy to use.
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Universal scoreboard</h3>
+          <p>Use it for board games, golf, card games, darts, quizzes or any custom game.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>1–4 players</h3>
+          <p>Each player has a clear, always-visible column.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Flexible rounds</h3>
+          <p>Choose how many rounds you want before starting.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Tap to add +1</h3>
+          <p>Quick scoring with a single tap. Long press to enter custom values.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Automatic totals</h3>
+          <p>No manual calculations – totals update instantly.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Offline & private</h3>
+          <p>Works fully offline. All data is stored only on your device.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy" class="section">
+      <h2>Privacy</h2>
+      <p class="section-intro">
+        SCORE: 125 does not require an account and does not collect personal data.
+      </p>
+      <div class="feature-card">
+        <p>
+          All player names and scores are stored locally on your device.
+          Nothing is uploaded or shared.
+        </p>
+      </div>
+    </section>
+
+    <section id="support" class="section">
+      <h2>Support</h2>
+      <p class="section-intro">
+        Have feedback or feature ideas? Get in touch.
+      </p>
+      <div class="feature-card">
+        <p>Email: <a href="mailto:score125@donturexdev.fi">score125@donturexdev.fi</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© <span id="year"></span> SCORE: 125</div>
+      <div>
+        <a href="#features">Features</a> ·
+        <a href="#privacy">Privacy</a> ·
+        <a href="#support">Support</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
