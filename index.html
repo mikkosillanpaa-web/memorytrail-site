@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DontureX Development</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/logo.png">
+    <meta name="theme-color" content="#0f172a">
+
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -15,7 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* Animated background glow */
         body::before {
             content: "";
             position: fixed;
@@ -197,9 +204,6 @@
 </footer>
 
 <script>
-    // ===== AUTO-EXPANDABLE GAME STRUCTURE =====
-    // Add new games here and they will automatically appear on the site.
-
     const games = [
         {
             title: "Memory Trail",
@@ -227,7 +231,7 @@
             <div class="game-links">
                 <a href="${game.url}">Learn More →</a>
             </div>
-            <img class="play-badge" src="${game.badge}" alt="Get it on Google Play">
+            <img class="play-badge" src="${game.badge}" alt="${game.title} logo">
         `;
 
         grid.appendChild(card);
